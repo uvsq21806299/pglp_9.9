@@ -9,6 +9,10 @@ package fr.uvsq.pglp_9;
  *
  * @author andri
  */
-public class Groupe {
+public class Triangle implements Formes{
+
+    public void move(double dx, double dy) {
+
+    }
     
 }

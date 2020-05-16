@@ -6,11 +6,13 @@
 package fr.uvsq.pglp_9;
 
 /**
- * Classe principale
- * 
- * 
+ *
  * @author andri
  */
-public class DrawingApp {
+public class Groupes implements Formes{
+
+    public void move(double dx, double dy) {
+
+    }
     
 }

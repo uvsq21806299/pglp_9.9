@@ -9,6 +9,14 @@ package fr.uvsq.pglp_9;
  *
  * @author andri
  */
-public class Formes {
+public interface Formes {
+    
+    /**
+     * 
+     * @param dx
+     * @param dy 
+     */
+    
+    void move(double dx, double dy);
     
 }

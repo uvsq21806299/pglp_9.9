@@ -6,11 +6,9 @@
 package fr.uvsq.pglp_9;
 
 /**
- * Classe principale
- * 
- * 
+ *
  * @author andri
  */
-public class DrawingApp {
+public class Cercle {
     
 }
