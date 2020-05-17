@@ -11,7 +11,7 @@ import java.awt.geom.Point2D;
  *
  * @author andri
  */
-public class Rectangle implements Formes{
+public class Carre implements Formes{
     
     private String name;
     private Point2D abs;
@@ -19,7 +19,7 @@ public class Rectangle implements Formes{
     
     /**
      * 
-     * @return  retourne le Nom du Rectangle
+     * @return retourne le nom du carre
      */
     public String getName(){
         return name;
@@ -27,7 +27,7 @@ public class Rectangle implements Formes{
     
     /**
      * 
-     * @return retourne la Longueur du rectangle
+     * @return retourne la Longueur du carre
      */
     public Point2D getAbs(){
         return abs;
@@ -35,7 +35,7 @@ public class Rectangle implements Formes{
     
     /**
      * 
-     * @return retourne la Largeur du rectangle
+     * @return retourne la Largeur du carre
      */
     public Point2D  getOrd(){
         return ord;
@@ -47,7 +47,7 @@ public class Rectangle implements Formes{
      * @param abs
      * @param ord
      */
-    public Rectangle(String name, Point2D abs, Point2D ord) 
+    public Carre(String name, Point2D abs, Point2D ord) 
     {
         
             this.name = name;
@@ -55,11 +55,9 @@ public class Rectangle implements Formes{
             this.ord = ord;
     }
 
-    
-    
     public void move(double dx, double dy) {
         
     }
-    
+
     
 }
