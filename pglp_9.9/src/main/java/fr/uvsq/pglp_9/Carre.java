@@ -14,8 +14,10 @@ import java.awt.geom.Point2D;
 public class Carre implements Formes{
     
     private String name;
-    private Point2D abs;
-    private Point2D ord;
+    private Point2D a;
+    private Point2D b;
+    private Point2D c;
+    private Point2D d;
     
     /**
      * 
@@ -27,37 +29,54 @@ public class Carre implements Formes{
     
     /**
      * 
-     * @return retourne la Longueur du carre
+     * @return retourne le point a
      */
-    public Point2D getAbs(){
-        return abs;
+    public Point2D getA(){
+        return a;
     }
     
     /**
      * 
-     * @return retourne la Largeur du carre
+     * @return retourne le point b
      */
-    public Point2D  getOrd(){
-        return ord;
+    public Point2D  getB(){
+        return b;
+    }
+    
+    /**
+     * 
+     * @return retourne le point c
+     */
+    public Point2D  getC(){
+        return c;
+    }
+    
+    /**
+     * 
+     * @return retourne le point d
+     */
+    public Point2D  getD(){
+        return d;
     }
     
     /**
      *
      * @param name
-     * @param abs
-     * @param ord
      */
-    public Carre(String name, Point2D abs, Point2D ord) 
+    public Carre(String name, Point2D a, Point2D b,Point2D c, Point2D d) 
     {
         
             this.name = name;
-            this.abs = abs;
-            this.ord = ord;
+            this.a = a;
+            this.b = b;
+            this.c = c;
+            this.d = d;
     }
 
-    public void move(double dx, double dy) {
-        
-    }
-
+    public void getDescription() {
+        System.out.println("C'est le carre " + this.name + ""
+                + "  avec les coordonees : ((" + this.a.getX()+","+this.a.getY()+"),("+ this.b.getX()+","+this.b.getY()+"),("
+                + this.c.getX()+","+this.c.getY()+ "),(" + this.d.getX()+","+this.d.getY()+ "))");
+    }    
     
 }

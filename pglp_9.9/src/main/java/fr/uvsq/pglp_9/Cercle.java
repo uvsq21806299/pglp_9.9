@@ -30,10 +30,7 @@ public class Cercle implements Formes{
         
     }
    
-    
-    public void move(double dx, double dy) {
-        //centre.move(dx, dy);
-    }
+
     
     public String getName(){
         return  name;
@@ -45,6 +42,10 @@ public class Cercle implements Formes{
     
     public Point2D getCentre(){
         return centre;
+    }
+
+    public void getDescription() {
+        
     }
     
     
