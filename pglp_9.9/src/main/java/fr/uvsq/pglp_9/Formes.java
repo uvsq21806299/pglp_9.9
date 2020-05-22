@@ -11,12 +11,6 @@ package fr.uvsq.pglp_9;
  */
 public interface Formes {
     
-    /**
-     * 
-     * @param dx
-     * @param dy 
-     */
-    
-    void move(double dx, double dy);
+    public void getDescription();
     
 }

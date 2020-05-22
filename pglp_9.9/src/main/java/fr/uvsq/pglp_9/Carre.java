@@ -18,6 +18,15 @@ public class Carre implements Formes{
     private Point2D b;
     private Point2D c;
     private Point2D d;
+
+    Carre(String name, Point2D a, Point2D b,Point2D c, Point2D d) 
+    {
+            this.name = name;
+            this.a = a;
+            this.b = b;
+            this.c = c;
+            this.d = d;    
+    }
     
     /**
      * 
@@ -63,15 +72,7 @@ public class Carre implements Formes{
      *
      * @param name
      */
-    public Carre(String name, Point2D a, Point2D b,Point2D c, Point2D d) 
-    {
-        
-            this.name = name;
-            this.a = a;
-            this.b = b;
-            this.c = c;
-            this.d = d;
-    }
+    
 
     public void getDescription() {
         System.out.println("C'est le carre " + this.name + ""

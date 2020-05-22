@@ -5,19 +5,26 @@
  */
 package fr.uvsq.pglp_9;
 
+import java.util.List;
+
 /**
  *
  * @author andri
  */
-public class Groupes implements Command{
+public class MoveCommand implements Command{
+
+
+    public static List<String> name;
+    
+    public static void init(List<String> list){
+        name = list;
+    }
+	
 
     @Override
     public void execute() {
-
+        
         
     }
-
-    
-    
     
 }

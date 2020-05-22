@@ -8,9 +8,15 @@ package fr.uvsq.pglp_9;
 /**
  *
  * @author andri
+ * @param <T>
  */
-public interface Command {
+public interface DAO<T> {
     
-    public void execute();
+    public int insert(T obj);
+    public boolean delete(T obj);
+    public void update(T obj);
+    public void findAll();
+    public Formes find(String name);
+    public void move(T obj, int a, int b);
     
 }

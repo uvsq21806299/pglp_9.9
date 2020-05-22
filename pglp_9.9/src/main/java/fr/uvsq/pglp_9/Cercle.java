@@ -31,20 +31,34 @@ public class Cercle implements Formes{
     }
    
 
-    
+    /**
+     * 
+     * @return retourne le nom du cercle
+     */
     public String getName(){
         return  name;
     }
     
+    /**
+     * 
+     * @return retourne le rayon du cercle
+     */
     public int getRayon(){
         return rayon;
     }
     
+    /**
+     * 
+     * @return retourne le centre du cercle
+     */
     public Point2D getCentre(){
         return centre;
     }
 
     public void getDescription() {
+        System.out.println("C'est le cercle " +this.name+""
+                + " avec : ( centre : (" + this.centre.getX() + "," + this.centre.getY()+ ""
+                + "), rayon : (" + this.rayon + "))");
         
     }
     
