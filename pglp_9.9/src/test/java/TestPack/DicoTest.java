@@ -39,5 +39,44 @@ public class DicoTest {
     
     
     @Test
-    public void hello() {}
+    public void cercleTest() {
+	System.out.println("Vérification cercle ");
+	if (dico.isMatching(cercle)) {
+            dico.splitSaisie(cercle);            
+	} else {
+            System.out.println("Erreur de syntaxe ");
+	}
+    }
+    
+    @Test
+    public void carreTest(){
+        System.out.println("Verification carre ");
+        if(dico.isMatching(carre)){
+            dico.splitSaisie(carre);
+        }else{
+            System.out.println("Erreur de Syntaxe");
+        }
+    }
+    
+    @Test
+    public void rectangleTest(){
+        System.out.println("Verifier rectangle");
+        if(dico.isMatching(rectangle)){
+            dico.splitSaisie(rectangle);
+        }else{
+            System.out.println("Erreur de Syntaxe");
+        }
+    }
+    
+    @Test
+    public void triangleTest(){
+        System.out.println("Verifier triangle");
+        if(dico.isMatching(triangle)){
+            dico.splitSaisie(triangle);
+        }else{
+            System.out.println("Erreur de Syntaxe");
+        }
+    }
+        
+        
 }
