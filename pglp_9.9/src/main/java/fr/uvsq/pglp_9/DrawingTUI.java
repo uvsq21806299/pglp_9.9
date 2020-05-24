@@ -19,9 +19,10 @@ public class DrawingTUI {
     private AfficheCommand affiche = new AfficheCommand();
     private CreeCommand cree = new CreeCommand();
     private MoveCommand move = new MoveCommand();
+    private Groupes group = new Groupes();
+    //private QuitCommand quit = new Quit();
     
     public static Interpreter interpreteur = new Interpreter() {};
-    protected Stack<Command> stock;
     private DrawingApp drawingApp;
     
     /**
@@ -32,8 +33,9 @@ public class DrawingTUI {
         interpreteur.save("affiche", affiche);
         interpreteur.save("Cree", cree);
         interpreteur.save("move", move);
-        //drawingApp = DrawingApp.ENVIRONNEMENT;
-        stock = new Stack<Command>();
+        interpreteur.save("group", group);
+        //interpreteur.save("quit", quit);
+        drawingApp = DrawingApp.ENVIRONNEMENT;
         
     }
     
@@ -47,12 +49,12 @@ public class DrawingTUI {
         while(true){
             System.out.println("Veuillez saisir la commande :  ");
             saisie = sc.nextLine();
-            //drawingApp.run(saisie);
+            drawingApp.run(saisie);
         }
     
     }
     
-    public void afficher(Formes formes){
+    public static void afficher(Formes formes){
         formes.getDescription();
         
     }

@@ -51,4 +51,11 @@ public enum DrawingApp {
         
     }
     
+    
+    public static void main(String args[]){
+        DrawingTUI drawingTUI = new DrawingTUI();
+        drawingTUI.init();
+        drawingTUI.nextCommand();
+    }
+    
 }

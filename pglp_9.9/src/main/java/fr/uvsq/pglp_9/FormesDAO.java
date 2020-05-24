@@ -29,8 +29,9 @@ public class FormesDAO implements DAO<Formes>{
                 Cercle cercle;
                 cercle = (Cercle) obj;
                 prepare = connection.prepareStatement(
-                    "INSERT INTO Groupe (name) VALUES (?) ");
-                prepare.setString(1, cercle.getName());
+                    "INSERT INTO Groupe (uuid, name) VALUES (?, ?) ");
+                prepare.setString(1, Groupes.uuid);
+                prepare.setString(2, cercle.getName());
                 res = prepare.executeUpdate();
                 connection.commit();
             }
@@ -38,6 +39,52 @@ public class FormesDAO implements DAO<Formes>{
                 prepare.close();
                 connection.close();
             }
+            
+            try{
+                Carre carre;
+                carre = (Carre) obj;
+                prepare = connection.prepareStatement(
+                    "INSERT INTO Groupe (uuid, name) VALUES (?, ?) ");
+                prepare.setString(1, Groupes.uuid);
+                prepare.setString(2, carre.getName());
+                res = prepare.executeUpdate();
+                connection.commit();
+            }
+            finally{
+                prepare.close();
+                connection.close();
+            }
+            
+            try{
+                Rectangle rectangle;
+                rectangle = (Rectangle) obj;
+                prepare = connection.prepareStatement(
+                    "INSERT INTO Groupe (uuid, name) VALUES (?, ?) ");
+                prepare.setString(1, Groupes.uuid);
+                prepare.setString(2, rectangle.getName());
+                res = prepare.executeUpdate();
+                connection.commit();
+            }
+            finally{
+                prepare.close();
+                connection.close();
+            }
+            
+            try{
+                Triangle triangle;
+                triangle = (Triangle) obj;
+                prepare = connection.prepareStatement(
+                    "INSERT INTO Groupe (uuid, name) VALUES (?, ?) ");
+                prepare.setString(1, Groupes.uuid);
+                prepare.setString(2, triangle.getName());
+                res = prepare.executeUpdate();
+                connection.commit();
+            }
+            finally{
+                prepare.close();
+                connection.close();
+            }
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -64,15 +111,16 @@ public class FormesDAO implements DAO<Formes>{
     
     public String findGroup(String nameGroup){
         DerbyDAOFactory derby = new DerbyDAOFactory();
-        String col = null;
+        String col1, col2 = null;
         PreparedStatement prepare = null;
         try(Connection connection = derby.createConnection()){
             try{
-                prepare = connection.prepareStatement("SELECT name FROM GroupForm WHERE name = ?");
+                prepare = connection.prepareStatement("SELECT name, uuid FROM GroupForm WHERE name = ?");
                 prepare.setString(1, nameGroup);
                 ResultSet res = prepare.executeQuery();
                 while(res.next()){
-                    col = res.getString(1);
+                    col1 = res.getString(1);
+                    col2 = res.getString(2);
                 }
                 connection.commit();
             }finally{
@@ -82,29 +130,31 @@ public class FormesDAO implements DAO<Formes>{
         }catch(SQLException ex){
             ex.printStackTrace();
         }
-        return col;
+        return col2;
     }
 
 
     public boolean getExistGroup(String nameGroup){
         
         DerbyDAOFactory derby = new DerbyDAOFactory();
-        String col = null;
+        String col1, col2 = null;
         boolean resultat = false;
         PreparedStatement prepare = null;
         try(Connection connection = derby.createConnection()){
             try{
-                prepare = connection.prepareStatement("SELECT nom FROM GroupForm WHERE name = ?");
+                prepare = connection.prepareStatement("SELECT nom, uuid FROM GroupForm WHERE name = ?");
                 prepare.setString(1, nameGroup);
                 ResultSet res = prepare.executeQuery();
                 while(res.next()){
-                    col = res.getString(1);
+                    col1 = res.getString(1);
+                    col2 = res.getString(2);
                     resultat = true;
                 }
             }finally{
                 prepare.close();
                 connection.close();
             }
+            
         }catch(SQLException ex){
             ex.printStackTrace();
         }
@@ -119,6 +169,7 @@ public class FormesDAO implements DAO<Formes>{
             try {
 		prepare = connection.prepareStatement("INSERT INTO GroupGraphique (nom)" + "VALUES (?)");
 				prepare.setString(1, nom);
+                                prepare.setString(2, uuid);
 				res = prepare.executeUpdate();
 				connection.commit();
 			} finally {
