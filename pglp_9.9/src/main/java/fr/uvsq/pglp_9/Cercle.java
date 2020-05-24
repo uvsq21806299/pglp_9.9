@@ -23,10 +23,10 @@ public class Cercle implements Formes{
      * @param rayon
      * @param centre 
      */
-    public Cercle(String name, int rayon, Point2D centre){
+    public Cercle(String name, int rayon, Point2D centreC){
         this.name = name;
         this.rayon = rayon;
-        this.centre = centre;
+        this.centre = centreC;
         
     }
    
@@ -55,6 +55,7 @@ public class Cercle implements Formes{
         return centre;
     }
 
+    @Override
     public void getDescription() {
         System.out.println("C'est le cercle " +this.name+""
                 + " avec : ( centre : (" + this.centre.getX() + "," + this.centre.getY()+ ""

@@ -117,7 +117,7 @@ public class DicoRegex {
         
         public static List<String> splitSaisie(String saisie)
         {
-            List<String> list = new ArrayList<String>();
+                List<String> list = new ArrayList<String>();
 		saisie = saisie.replaceAll("\\s","");
 		saisie = saisie.replaceAll("=","#");
 		saisie = saisie.replaceAll("\\(","#");

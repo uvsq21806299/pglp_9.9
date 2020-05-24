@@ -25,7 +25,8 @@ public class DerbyDAOFactory extends DAOFactory{
      */
     public static Connection createConnection() throws SQLException
     {
-        Connection connection = DriverManager.getConnection(DBURL);
+        Connection connection = null;
+        connection = DriverManager.getConnection(DBURL);
         return connection;
     }
     

@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -90,6 +92,33 @@ public class FormesDAO implements DAO<Formes>{
         }
         return res;
     }
+    
+    public List<String> getAllElement(String uuid) {
+	DerbyDAOFactory derby = new DerbyDAOFactory();
+	List<String> liste = new ArrayList<String>();
+	PreparedStatement prepare = null;
+	try (Connection connection = derby.createConnection()) {
+            try {
+		prepare = connection.prepareStatement("SELECT nomelement FROM GraphiqueEnsemble where uuidgroup = ?");
+		prepare.setString(1, uuid);
+		ResultSet result = prepare.executeQuery();
+		String colonne2;
+                while (result.next()) {
+                    do {
+                        colonne2 = result.getString(1);
+			liste.add(colonne2);
+                    } while (result.next());
+		}
+				connection.commit();
+			} finally {
+				prepare.close();
+				connection.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return liste;
+	}
     
     @Override
     public boolean delete(Formes obj) {

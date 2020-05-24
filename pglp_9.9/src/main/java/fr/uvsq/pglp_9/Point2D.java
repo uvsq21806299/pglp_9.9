@@ -49,6 +49,7 @@ public class Point2D{
     }
     
     public void setY(int y)
+    //public void setY(double y)
     {
         this.y = y;
     }

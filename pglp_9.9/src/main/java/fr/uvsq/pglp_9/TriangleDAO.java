@@ -7,9 +7,8 @@ package fr.uvsq.pglp_9;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -21,9 +20,9 @@ public class TriangleDAO implements DAO<Triangle>{
     public int insert(Triangle obj) {
         int valeur = 0;
 	DerbyDAOFactory derby = new DerbyDAOFactory();
-	try (Connection connect = derby.createConnection()) {
-            PreparedStatement prepare = connect.prepareStatement(
-		"INSERT INTO Triangle (nom, coord1, coord2, coord3, coord4, coord5, coord6)" +
+	try (Connection connection = derby.createConnection()) {
+            PreparedStatement prepare = connection.prepareStatement(
+		"INSERT INTO Triangle (name, val1, val2, val3, val4, val5, val6)" +
 		"VALUES (?, ?, ?, ?, ?, ?, ?)");
             prepare.setString(1, obj.getName());
             prepare.setInt(2, (int) obj.getA().getX());
@@ -35,7 +34,7 @@ public class TriangleDAO implements DAO<Triangle>{
             
             System.out.println("Création d'un triangle " + obj);
             valeur = prepare.executeUpdate();
-            connect.commit();
+            connection.commit();
 	}
 	catch (SQLException ex) {
             ex.printStackTrace();
@@ -75,12 +74,45 @@ public class TriangleDAO implements DAO<Triangle>{
         }
     }
 
+    @Override
     public void findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Formes find(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override
+    public Triangle find(String name) {
+        DerbyDAOFactory derby = new DerbyDAOFactory();
+	ResultSet result = null;
+	PreparedStatement prepare = null;
+	try (Connection connection = derby.createConnection()) {
+            try {
+		prepare = connection.prepareStatement("SELECT name, val1, val2, val3, val4, val5, val6 FROM Triangle ");
+		result = prepare.executeQuery();
+		System.out.println("Selection de tous les rectangles :");
+		int colonne2, colonne3, colonne4, colonne5, colonne6, colonne7, colonne8, colonne9;
+		String colonne1;
+		while (result.next()) {
+                    do {
+			colonne1 = result.getString(1);
+			colonne2 = result.getInt(2);
+			colonne3 = result.getInt(3);
+			colonne4 = result.getInt(4);
+			colonne5 = result.getInt(5);
+			colonne6 = result.getInt(6);
+			colonne7 = result.getInt(7);
+			System.out.println(colonne1 + " = Triangle((" + colonne2 + "," + colonne3 + "),(" + colonne4
+								+ "," + colonne5 + "),(" + colonne6 + "," + colonne7 + "))");
+					} while (result.next());
+				}
+				connection.commit();
+			} finally {
+				prepare.close();
+				connection.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+        return (Triangle) result;
     }
 
     @Override

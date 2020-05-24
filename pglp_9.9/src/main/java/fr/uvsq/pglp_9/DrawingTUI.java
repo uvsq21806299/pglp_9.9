@@ -20,7 +20,7 @@ public class DrawingTUI {
     private CreeCommand cree = new CreeCommand();
     private MoveCommand move = new MoveCommand();
     private Groupes group = new Groupes();
-    //private QuitCommand quit = new Quit();
+    private QuitCommand quit = new QuitCommand();
     
     public static Interpreter interpreteur = new Interpreter() {};
     private DrawingApp drawingApp;

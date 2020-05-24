@@ -15,7 +15,7 @@ public class AfficheCommand implements Command{
     private static String name;
     
     /**
-     * 
+     * initialisation createCommand
      * @param list parametre d'une forme graphique
      */
     public static void init(List<String> list){

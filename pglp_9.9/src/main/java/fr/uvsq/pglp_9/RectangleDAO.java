@@ -7,9 +7,8 @@ package fr.uvsq.pglp_9;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -78,12 +77,83 @@ public class RectangleDAO implements DAO<Rectangle>{
 
     @Override
     public void findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        DerbyDAOFactory derby = new DerbyDAOFactory();
+	PreparedStatement prepare = null;
+	try (Connection connection = derby.createConnection()) {
+            try {
+                prepare = connection.prepareStatement(
+						"SELECT name, val1, val2, val3, val4, val5, val6, val7, val8 FROM Rectangle ");
+		ResultSet result = prepare.executeQuery();
+		System.out.println("Selection de tous les rectangles :");
+		int colonne2, colonne3, colonne4, colonne5, colonne6, colonne7, colonne8, colonne9;
+		String colonne1;
+		while (result.next()) {
+                	do {
+                        	colonne1 = result.getString(1);
+				colonne2 = result.getInt(2);
+				colonne3 = result.getInt(3);
+				colonne4 = result.getInt(4);
+                                colonne5 = result.getInt(5);
+				colonne6 = result.getInt(6);
+				colonne7 = result.getInt(7);
+				colonne8 = result.getInt(8);
+				colonne9 = result.getInt(9);
+				System.out.println(colonne1 + " = Rectangle((" + colonne2 + "," + colonne3 + "),(" + colonne4
+								+ "," + colonne5 + "),(" + colonne6 + "," + colonne7 + "),(" + colonne8 + "," + colonne9
+								+ "))");
+			} while (result.next());
+		}
+            } finally {
+		prepare.close();
+		connection.close();
+            }
+	} catch (SQLException ex) {
+		ex.printStackTrace();
+	}
     }
 
     @Override
-    public Formes find(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Rectangle find(String name) {
+
+        DerbyDAOFactory derby = new DerbyDAOFactory();
+        Rectangle rectangle = null;
+		PreparedStatement prepare = null;
+		try (Connection connect = derby.createConnection()) {
+			try {
+				prepare = connect.prepareStatement(
+						"SELECT id, nom, coord1, coord2, coord3, coord4, coord5, coord6, coord7, coord8 FROM Rectangle where nom = ?");
+				prepare.setString(1, name);
+				ResultSet result = prepare.executeQuery();
+				int colonne1, colonne3, colonne4, colonne5, colonne6, colonne7, colonne8, colonne9, colonne10;
+				String colonne2;
+				while (result.next()) {
+					do {
+						colonne1 = result.getInt(1);
+						colonne2 = result.getString(2);
+						colonne3 = result.getInt(3);
+						colonne4 = result.getInt(4);
+						colonne5 = result.getInt(5);
+						colonne6 = result.getInt(6);
+						colonne7 = result.getInt(7);
+						colonne8 = result.getInt(8);
+						colonne9 = result.getInt(9);
+						colonne10 = result.getInt(10);
+						Point2D a = new Point2D(colonne3, colonne4);
+						Point2D b = new Point2D(colonne5, colonne6);
+						Point2D c = new Point2D(colonne7, colonne8);
+						Point2D d = new Point2D(colonne9, colonne10);
+						rectangle = new Rectangle(a, b, c, d, colonne2);
+					} while (result.next());
+				}
+			} finally {
+				prepare.close();
+				connect.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rectangle;
     }
 
     @Override

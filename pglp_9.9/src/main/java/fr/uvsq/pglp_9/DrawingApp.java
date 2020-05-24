@@ -40,13 +40,13 @@ public enum DrawingApp {
                 DrawingTUI.interpreteur.mapCommand.get("cree").execute();
             }
         }else{
-            /*command = dico.verifCommand(saisie);
-            if(command instaceof Quit){
+            command = dico.verifCommand(saisie);
+            if(command instanceof QuitCommand){
                 DrawingTUI.interpreteur.mapCommand.get("quit").execute();
             }else{
                 System.out.println(" Commande n'existe pas");
             }
-            */
+            
         }
         
     }

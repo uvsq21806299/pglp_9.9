@@ -9,8 +9,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -148,8 +146,13 @@ public class CarreDAO implements DAO<Carre>{
         
     }
 
+    /**
+     * 
+     * @param name
+     * @return 
+     */
     @Override
-    public Formes find(String name) {
+    public Carre find(String name) {
         Carre carre = null;
 	int colonne1, colonne3, colonne4, colonne5, colonne6, colonne7, colonne8, colonne9, colonne10;
         String colonne2;
@@ -178,7 +181,7 @@ public class CarreDAO implements DAO<Carre>{
 			Point2D b = new Point2D(colonne5, colonne6);
 			Point2D c = new Point2D(colonne7, colonne8);
 			Point2D d = new Point2D(colonne9, colonne10);
-			carre = new Carre(colonne2, a, b, c, d);
+			carre = new Carre(a, b, c, d, colonne2);
                     } while (resultat.next());
 		}
             } finally {
