@@ -72,6 +72,7 @@ public class AfficheCommand implements Command{
         if(r == 0){
             System.out.println(name + " erreur");
         }
+        r = 0;
     }
 
     

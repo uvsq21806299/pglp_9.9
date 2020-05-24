@@ -16,9 +16,13 @@ public abstract class DAOFactory {
     
     
     public abstract CarreDAO getCarreDAO();
+    
     public abstract RectangleDAO getRectangleDAO();
+    
     public abstract CercleDAO getCercleDAO();
+    
     public abstract TriangleDAO getTriangleDAO();
+    
     public abstract FormesDAO getFormesDAO();
     
     public static DAOFactory getDAOFactory(int fact){

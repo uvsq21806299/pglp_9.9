@@ -7,6 +7,7 @@ package fr.uvsq.pglp_9;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -75,41 +76,42 @@ public class DicoRegex {
             if(matcher.matches())
             {
                 matcher = cerclePattern.matcher(saisie);
+            }
+            if(matcher.matches()){
+                return true;
+            } 
+            else{
+                matcher = rectangle_carrePattern.matcher(saisie);
                 if(matcher.matches()){
                     return true;
-                } 
+                }
                 else{
-                    matcher = rectangle_carrePattern.matcher(saisie);
+                    matcher = trianglePattern.matcher(saisie);
                     if(matcher.matches()){
-                        return true;
+                    return true;
                     }
                     else{
-                        matcher = trianglePattern.matcher(saisie);
+                        matcher = patternMove.matcher(saisie);
                         if(matcher.matches()){
-                            return true;
+                        return true;
                         }
                         else{
-                            matcher = patternMove.matcher(saisie);
+                            matcher = patternGroup.matcher(saisie);
                             if(matcher.matches()){
-                                return true;
+                            return true;
                             }
-                            else{
-                                matcher = patternGroup.matcher(saisie);
+                            else {
+                                matcher = patternAffiche.matcher(saisie);
                                 if(matcher.matches()){
-                                    return true;
-                                }
-                                else {
-                                    matcher = patternAffiche.matcher(saisie);
-                                    if(matcher.matches()){
-                                        return true;
-                                    }
+                                return true;
                                 }
                             }
                         }
                     }
                 }
+                return false;
             }
-            return false;
+            
         }
         
         
@@ -130,5 +132,31 @@ public class DicoRegex {
 			}
 		}
 		return list;
+        }
+        
+        public Command verifCommand(String saisie){
+            Command command = DrawingTUI.interpreteur.mapCommand.get(saisie);
+            return command;
+        }
+        
+        public boolean getMoveCommand(List<String> valeur){
+            if(valeur.get(0).toLowerCase().matches("move")){
+                return true;
+            }else
+                return false;
+        }
+        
+        public boolean getGroupCommand(List<String> valeur){
+            if(valeur.get(1).toLowerCase().matches("groupes"))
+                return true;
+            else
+                return false;
+        }
+        
+        public boolean getAfficheCommand(List<String> valeur){
+            if(valeur.get(0).toLowerCase(Locale.ROOT).matches("affiche"))
+                return true;
+            else
+                return false;
         }
 }

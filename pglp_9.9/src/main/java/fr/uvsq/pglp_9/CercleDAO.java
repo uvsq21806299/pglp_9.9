@@ -22,19 +22,24 @@ class CercleDAO implements DAO<Cercle>{
         int valeur = 0;
         
         DerbyDAOFactory derby = new DerbyDAOFactory();
+        PreparedStatement prepare = null;
         try(Connection connection = derby.createConnection()){
-            PreparedStatement prepare = connection.prepareStatement(
+            try{
+                prepare = connection.prepareStatement(
                     "INSERT INTO Cercle (name, rayon, val1, val2" +
                     "VALUES (?,?,?,?)");
             
-            prepare.setString(1, obj.getName());
-            prepare.setInt(2, obj.getRayon());
-            prepare.setInt(2, (int) obj.getCentre().getX());
-            prepare.setInt(4, (int) obj.getCentre().getY());
-            
-            valeur = prepare.executeUpdate();
-            connection.commit();
-            connection.close();
+                prepare.setString(1, obj.getName());
+                prepare.setInt(2, obj.getRayon());
+                prepare.setInt(3, (int) obj.getCentre().getX());
+                prepare.setInt(4, (int) obj.getCentre().getY());
+
+                valeur = prepare.executeUpdate();
+                connection.commit();
+            }finally{
+                prepare.close();
+                connection.close();
+            }
         } catch (SQLException ex) {
                 ex.printStackTrace();
         }
@@ -51,18 +56,22 @@ class CercleDAO implements DAO<Cercle>{
         int valeur = 0;
          
         DerbyDAOFactory derby = new DerbyDAOFactory();
+        PreparedStatement prepare = null;
         try(Connection connection = derby.createConnection()){
-            PreparedStatement prepare = connection.prepareStatement(
+            try{
+                prepare = connection.prepareStatement(
                     "UPDATE Cercle SET val1=?, val2=? WHERE name=? ");
             prepare.setString(1, obj.getName());
             prepare.setInt(2, (int) obj.getCentre().getX());
             prepare.setInt(3, (int) obj.getCentre().getY());
             
-            System.out.println("Création d'un cercle " + obj);
             valeur = prepare.executeUpdate();
             connection.commit();
-            connection.close();
-            
+            }finally{
+                
+                connection.close();
+
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

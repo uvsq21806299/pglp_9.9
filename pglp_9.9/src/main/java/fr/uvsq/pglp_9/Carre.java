@@ -27,7 +27,7 @@ public class Carre implements Formes{
             this.c = c;
             this.d = d;    
     }
-    
+
     /**
      * 
      * @return retourne le nom du carre
